@@ -1,6 +1,48 @@
 # Data-Structures-And-Algorithms
 Data Structures And Algorithms using Python
--------------------------A* -------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Dijkstra’s Algorithm -----------------------------------------------------
+
+Dijkstra’s Algorithm works like the following:
+
+1. Instantiate a dictionary that will eventually map vertices to their distance from the start vertex
+2. Assign the start vertex a distance of 0 in a min heap
+3. Assign every other vertex a distance of infinity in a min heap
+4. Remove the vertex with the smallest distance from the min heap and set that to the current vertex
+5. For the current vertex, consider all of its adjacent vertices and calculate the distance to them as (distance to the current vertex) + (edge weight of current vertex to adjacent vertex).
+6. If this new distance is less than the current distance, replace the current distance.
+7. Repeat 4 and 5 until the heap is empty
+8. After the heap is empty, return the distances
+
+Using a heap will allow removing the minimum from the heap to be efficient. In python, there is a library called heapq which we will use to do all of our dirty work for us!
+
+The heapq method has two critical methods we will use in Dijkstra's Algorithm: heappush and heappop.
+
+heappush will add a value to the heap and adjust the heap accordingly
+heappop will remove and return the smallest value from the heap
+
+Psuedo Code - 
+create dictionary to map vertices to their distance from start vertex
+
+assign start vertex a distance of 0 in min heap
+
+assign every other vertex a distance of infinity in min heap
+
+remove the vertex with the minimum distance from the min heap and set it to the current vertex
+
+while min heap is not empty:
+  for each current vertex:
+    for each neighbor in neighbors:
+    new distance = (distance to current vertex) + (edge weight of current vertex to neighbor)
+
+    if new distance is less than its current distance:
+      current distance = new distance
+
+return distances
+
+A* ------------------------------------------------------------------------
 #manhatten-graoh.py and Euclidian_graph.py needed for input.
 
 To build out an A* implementation in Python.
