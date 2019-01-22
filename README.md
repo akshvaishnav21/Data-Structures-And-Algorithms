@@ -1,6 +1,8 @@
 # Data-Structures-And-Algorithms
 Data Structures And Algorithms using Python
 -------------------------A* -------------------------------------------------
+#manhatten-graoh.py and Euclidian_graph.py needed for input.
+
 To build out an A* implementation in Python.
 
 There are only a few important changes:
