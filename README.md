@@ -3,6 +3,161 @@ Data Structures And Algorithms using Python
 ----------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+Nodes --------------------------------------------------------------------
+
+Nodes Introduction
+Nodes are the fundamental building block of many computer science data structures. They form the basis for linked lists, stacks, queues, trees, and more.
+
+An individual node contains data and links to other nodes. Each data structure adds additional constraints or behavior to these features to create the desired structure.
+
+Nodes:
+
+        Contain data, which can be a variety of data types
+        Contain links to other nodes. If a node has no links, or they are all None, you have reached the end of the path you were following.
+        Can be orphaned if there are no existing links to them
+
+Linked Lists -------------------------------------------------------------
+
+Linked List Introduction
+Linked lists are one of the basic data structures used in computer science. They have many direct applications and serve as the foundation for more complex data structures.
+
+The list is comprised of a series of nodes as shown in the diagram. The head node is the node at the beginning of the list. Each node contains data and a link (or pointer) to the next node in the list. The list is terminated when a node's link is null. This is called the tail node.
+
+Since the nodes use links to denote the next node in the sequence, the nodes are not required to be sequentially located in memory. These links also allow for quick insertion and removal of nodes as you will see in future exercises.
+
+Common operations on a linked list may include:
+
+adding nodes
+removing nodes
+finding a node
+traversing (or travelling through) the linked list
+Linked lists typically contain unidirectional links (next node), but some implementations make use of bidirectional links (next and previous nodes).
+
+Adding a new node
+Adding a new node to the beginning of the list requires you to link your new node to the current head node. This way, you maintain your connection with the following nodes in the list.
+
+Removing a node
+If you accidentally remove the single link to a node, that node's data and any following nodes could be lost to your application, leaving you with orphaned nodes.
+
+To properly maintain the list when removing a node from the middle of a linked list, you need to be sure to adjust the link on the previous node so that it points to the following node.
+
+Linked Lists:
+
+        Are comprised of nodes
+        The nodes contain a link to the next node (and also the previous node for bidirectional linked lists)
+        Can be unidirectional or bidirectional
+        Are a basic data structure, and form the basis for many other data structures
+        Have a single head node, which serves as the first node in the list
+        Require some maintenance in order to add or remove nodes
+        The methods we used are an example and depend on the exact use case and/or programming language being used
+        
+node contains two elements:
+        data
+        a link to the next node
+        
+
+
+Stacks -------------------------------------------------------------------
+# stack.py and stack_node.py
+Stacks Introduction
+A stack is a data structure which contains an ordered set of data.
+
+Stacks provide three methods for interaction:
+
+Push - adds data to the "top" of the stack
+Pop - returns and removes data from the "top" of the stack
+Peek - returns data from the "top" of the stack without removing it
+Stacks mimic a physical "stack" of objects. Consider a set of gym weights.
+
+Each plate has a weight (the data). The first plate you add, or push, onto the floor is both the bottom and top of the stack. Each weight added becomes the new top of the stack.
+
+At any point, the only weight you can remove, or pop, from the stack is the top one. You can peek and read the top weight without removing it from the stack.
+
+The last plate that you put down becomes the first, and only, one that you can access. This is a Last In, First Out or LIFO structure. A less frequently used term is First In, Last Out, or FILO.
+
+Stacks Implementation
+Stacks can be implemented using a linked list as the underlying data structure because it's more efficient than a list or array.
+
+Depending on the implementation, the top of the stack is equivalent to the head node of a linked list and the bottom of the stack is equivalent to the tail node.
+
+A constraint that may be placed on a stack is its size. This is done to limit and quantify the resources the data structure will take up when it is "full".
+
+Attempting to push data onto an already full stack will result in a stack overflow. Similarly, if you attempt to pop data from an empty stack, it will result in a stack underflow.
+
+Stacks:
+
+        Contain data nodes
+        Support three main operations
+        Push adds data to the top of the stack
+        Pop removes and provides data from the top of the stack
+        Peek reveals data on the top of the stack
+        Implementations include a linked list or array
+        Can have a limited size
+        Pushing data onto a full stack results in a stack overflow
+        Stacks process data Last In, First Out (LIFO)
+ a Stack class that can:
+
+        add a new item to the top via a push() method
+        remove an item from the top and returns its value with a pop() method
+        return the value of the top item using a peek() method
+        allows a stack instance to maintain an awareness of its size to prevent stack "overflow"
+  
+Queues -------------------------------------------------------------------
+
+Queues Introduction
+A queue is a data structure which contains an ordered set of data.
+
+Queues provide three methods for interaction:
+
+Enqueue - adds data to the "back" or end of the queue
+Dequeue - provides and removes data from the "front" or beginning of the queue
+Peek - reveals data from the "front" of the queue without removing it
+This data structure mimics a physical queue of objects like a line of people buying movie tickets. Each person has a name (the data). The first person to enqueue, or get into line, is both at the front and back of the line. As each new person enqueues, they become the new back of the line.
+
+When the cashier serves someone, they begin at the front of the line (or people would get very mad!). Each person served is dequeued from the front of the line, they purchase a ticket and leave.
+
+If they just want to know who is next in line, they can peek and get their name without removing them from the queue.
+
+The first person in the queue is the first to be served. Queues are a First In, First Out or FIFO structure.
+
+Queues Implementation - 
+
+Queues can be implemented using a linked list as the underlying data structure. The front of the queue is equivalent to the head node of a linked list and the back of the queue is equivalent to the tail node.
+
+Since operations are only allowed affecting the front or back of the queue, any traversal or modification to other nodes within the linked list is disallowed. Since both ends of the queue must be accessible, a reference to both the head node and the tail node must be maintained.
+
+One last constraint that may be placed on a queue is its length. If a queue has a limit on the amount of data that can be placed into it, it is considered a bounded queue.
+
+Similar to stacks, attempting to enqueue data onto an already full queue will result in a queue overflow. If you attempt to dequeue data from an empty queue, it will result in a queue underflow.
+
+Queues:
+
+        Contain data nodes
+        Support three main operations:
+        Enqueue adds data to the back of the queue
+        Dequeue removes and provides data from the front of the queue
+        Peek provides data on the front of the queue
+        Can be implemented using a linked list or array
+        Bounded queues have a limited size.
+        Enqueueing onto a full queue causes a queue overflow
+        Queues process data First In, First Out (FIFO)
+        
+enqueue() method - 
+
+There are three scenarios that we are concerned with when adding a node to the queue:
+
+The queue is empty, so the node we're adding is both the head and tail of the queue
+The queue has at least one other node, so the added node becomes the new tail
+The queue is full, so the node will not get added because we don't want queue "overflow"
+
+For dequeue, there are three scenarios that we will take into account:
+
+The queue is empty, so we cannot remove or return any nodes lest we run into queue "underflow"
+The queue has one node, so when we remove it, the queue will be empty and we need to reset the queue's head and tail to None
+The queue has more than one node, and we just remove the head node and reset the head to the following node.
+
+
+
 Hash Map -----------------------------------------------------------------
 
 A hash map is:
@@ -595,3 +750,52 @@ The A* algorithm is a greedy graph search algorithm that optimizes looking for a
 A* is a modification of Dijkstra’s done by adding the estimated distance of each vertex to the goal vertex when searching.
 
 The runtime of A* is O(b^d) where b is the branching factor of the graph and d is the depth of the goal vertex from the start vertex.
+
+
+Radix Sort ------------------------------------------------------------------
+
+RADIX SORT: 
+What Is A Radix
+Quick, which number is bigger: 1489012 or 54? It’s 1489012, but how can you tell? It has more digits so it has to be larger, but why exactly is that the case?
+
+Our number system was developed by 8th century Arabic mathematicians and was successful because it made arithmetic operations more sensible and larger numbers easier to write and comprehend.
+
+The breakthrough those mathematicians made required defining a set of rules for how to depict every number. First we decide on an alphabet: different glyphs, or digits, that we’ll use to write our numbers with. The alphabet that we use to depict numbers in this system are the ten digits 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. We call the length of this alphabet our radix (or base). So for our decimal system, we have a radix of 10.
+
+Next we need to understand what those digits mean in different positions. In our system we have a ones place, a tens place, a hundreds place and so on. So what do digits mean in each of those places?
+
+This is where explaining gets a little complicated because the actual knowledge might feel very fundamental. There’s a difference, for instance, between the digit '6' and the actual number six that we represent with the digit '6'. This difference is similar to the difference between the letter 'a' (which we can use in lots of words) and the word 'a'.
+
+But the core of the idea is that we use these digits to represent different values when they're used in different positions. The digit 6 in the number 26 represents the value 6, but the digit 6 used in the number 86452 represents the value 6000.
+
+Base Numbering Systems
+The value of different positions in a number increases by a multiplier of 10 in increasing positions. This means that a digit '8' in the rightmost place of a number is equal to the value 8, but that same digit when shifted left one position (i.e., in 80) is equal to 10 * 8. If you shift it again one position you get 800, which is 10 * 10 * 8.
+
+This is where it's useful to incorporate the shorthand of exponential notation. It's important to note that 100 is equal to 1. Each position corresponds to a different exponent of 10.
+
+So why 10? It's a consequence of how many digits are in our alphabet for numbering. Since we have 10 digits (0-9) we can count all the way up to 9 before we need to use a different position. This system that we used is called base-10 because of that.
+
+Sorting By Radix
+So how does a radix sort use this base numbering system to sort integers? First, there are two different kinds of radix sort: most significant digit, or MSD, and least significant digit, or LSD.
+
+Both radix sorts organize the input list into ten "buckets", one for each digit. The numbers are placed into the buckets based on the MSD (left-most digit) or LSD (right-most digit). For example, the number 2367 would be placed into the bucket "2" for MSD and into "7" for LSD.
+
+This bucketing process is repeated over and over again until all digits in the longest number have been considered. The order within buckets for each iteration is preserved. For example, the numbers 23, 25 and 126 are placed in the "3", "5", and "6" buckets for an initial LSD bucketing. On the second iteration of the algorithm, they are all placed into the "2" bucket, but the order is preserved as 23, 25, 126.
+
+Radix Sort Performance
+The most amazing feature of radix sort is that it manages to sort a list of integers without performing any comparisons whatsoever. We call this a non-comparison sort.
+
+This makes its performance a little difficult to compare to most other comparison-based sorts. Consider a list of length n. For each iteration of the algorithm, we are deciding which bucket to place each of the n entries into.
+
+How many iterations do we have? Remember that we continue iterating until we examine each digit. This means we need to iterate for how ever many digits we have. We'll call this average number of digits the word-size or w.
+
+This means the complexity of radix sort is O(wn). Assuming the length of the list is much larger than the number of digits, we can consider w a constant factor and this can be reduced to O(n).
+
+radix sort:
+
+        A radix is the base of a number system. For the decimal number system, the radix is 10.
+        Radix sort has two variants - MSD and LSD
+        Numbers are bucketed based on the value of digits moving left to right (for MSD) or right to left (for LSD)
+        Radix sort is considered a non-comparison sort
+        The performance of radix sort is O(n)
+        
