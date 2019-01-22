@@ -3,6 +3,79 @@ Data Structures And Algorithms using Python
 ----------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+Linear Search ------------------------------------------------------------
+
+The linear search, or sequential search, algorithm sequentially checks whether a given value is an element of a specified list by scanning the elements of a list one-by-one. It checks every item in the list in order from the beginning to end until it finds a target value.
+
+If it finds the target value in the list, the linear search algorithm stops and returns the position in the list corresponding to the target value. If it does not find the value, the linear search algorithm returns a message stating that the target value is not in the list.
+
+The steps are:
+
+1. Examine the first element of the list.
+2. If the first element is equal to the target value, stop.
+3. If the first element is not equal to the target value, check the next element in the list.
+4. Continue steps 1-3 until the element is found or the end of the list is reached.
+
+The best case performance for linear search occurs when the target value exists in the list and is in the first position of the list. In this case, the linear search algorithm will only be required to make one comparison. The time complexity for linear search in its best case is O(1).
+
+There are two worst cases for linear search.
+
+Case 1: when the target value at the end of the list. 
+
+Case 2: when the target value does not exist in the list. 
+
+In both cases, the linear search algorithm is required to scan the entire list of N elements and, therefore, makes N comparisons.
+
+For this reason, the time complexity for linear search in its worst case is O(N).
+
+The time complexity for linear search is O(N), but its performance is dependent on its input:
+
+    Best Case: The algorithm requires only 1 comparison to find the target value in the first position of the list.
+    Worst Case: The algorithm requires only n comparison to find the target value in the last position of the list or does not exist in the list.
+    Average Case: The algorithm makes N/2 comparisons.
+    
+Linear search is a good choice for a search algorithm when:
+
+  You expect the target value to be positioned near the beginning of the list.
+
+  A search needs to be performed on an unsorted list because linear search traverses the entire list from beginning to end, regardless of its order.
+
+Binary Search ------------------------------------------------------------
+
+Binary search requires a sorted data-set. We then take the following steps:
+
+  1. Check the middle value of the dataset.
+
+  2. If this value matches our target we can return the index.
+  3. If the middle value is less than our target
+
+  4. Start at step 1 using the right half of the list.
+  If the middle value is greater than our target
+
+  Start at step 1 using the left half of the list.
+We eventually run out of values in the list, or find the target value.
+
+Time Complexity
+In each iteration, we are cutting the list in half. The time complexity is O(log N).
+
+A sorted list of 64 elements will take at most log2(64) = 6 comparisons.
+
+In the worst case:
+
+Comparison 1: We look at the middle of all 64 elements
+
+Comparison 2: If the middle is not equal to our search value, we would look at 32 elements
+
+Comparison 3: If the new middle is not equal to our search value, we would look at 16 elements
+
+Comparison 4: If the new middle is not equal to our search value, we would look at 8 elements
+
+Comparison 5: If the new middle is not equal to our search value, we would look at 4 elements
+
+Comparison 6: If the new middle is not equal to our search value, we would look at 2 elements
+
+When there's 2 elements, the search value is either one or the other, and thus, there is at most 6 comparisons in a sorted list of size 64.
+
 BFS And DFS --------------------------------------------------------------
 
 You can use a graph search algorithm to traverse the entirety of a graph data structure to locate a specific value
