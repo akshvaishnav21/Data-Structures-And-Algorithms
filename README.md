@@ -3,6 +3,162 @@ Data Structures And Algorithms using Python
 ----------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+Bubble Sort --------------------------------------------------------------
+Bubble sort is an introductory sorting algorithm that iterates through a list and compares pairings of adjacent elements.
+
+According to the sorting criteria, the algorithm swaps elements to shift elements towards the beginning or end of the list.
+
+By default, a list is sorted if for any element e and position 1 through N:
+
+e1 <= e2 <= e3 ... eN, where N is the number of elements in the list.
+
+For example, bubble sort transforms a list:
+
+[5, 2, 9, 1, 5]
+to an ascending order, from lowest to highest:
+
+[1, 2, 5, 5, 9]
+We implement the algorithm with two loops.
+
+The first loop iterates as long as the list is unsorted and we assume it's unsorted to start.
+
+Within this loop, another iteration moves through the list. For each pairing, the algorithm asks:
+
+In comparison, is the first element larger than the second element?
+
+If it is, we swap the position of the elements. The larger element is now at a greater index than the smaller element.
+
+When a swap is made, we know the list is still unsorted. The outer loop will run again when the inner loop concludes.
+
+The process repeats until the largest element makes its way to the last index of the list. The outer loop runs until no swaps are made within the inner loop.
+
+Runtime - 
+        bubble sort requires multiple passes through the input before producing a sorted list. Each pass through the list will place the next largest value in its proper place.
+
+    We are performing n-1 comparisons for our inner loop. Then, we must go through the list n times in order to ensure that each item in our list has been placed in its proper order.
+
+    The n signifies the number of elements in the list. In a worst case scenario, the inner loop does n-1 comparisons for each n element in the list.
+
+    Therefore we calculate the algorithm's efficiency as:
+
+    \mathcal{O}(n(n-1)) = \mathcal{O}(n(n)) = \mathcal{O}(n^2)O(n(n−1))=O(n(n))=O(n 
+    2
+     )
+    The diagram analyzes the pseudocode implementation of bubble sort to show how we draw this conclusion.
+
+    When calculating the run-time efficiency of an algorithm, we drop the constant (-1), which simplifies our inner loop comparisons to n.
+
+    This is how we arrive at the algorithm's runtime: O(n^2).
+    
+  Psuedo Code - 
+  for each pair(elem1, elem2):
+  if elem1 > elem2:
+    swap(elem1, elem2)
+  else:
+    # analyze next set of pairs
+    
+ Bubble Sort: Compare
+Now that we know how to swap items in an array, we need to set up the loops which check whether a swap is necessary.
+
+Recall that Bubble Sort compares neighboring items and if they are out of order, they are swapped.
+
+What does it mean to be "out of order"? Since bubble sort is a comparison sort, we'll use a comparison operator: <.
+
+We'll have two loops:
+
+One loop will iterate through each element in the list.
+
+Within the first loop, we'll have another loop for each element in the list.
+
+Inside the second loop, we'll take the index of the loop and compare the element at that index with the element at the next index. If they're out of order, we'll make a swap!
+
+
+
+Merge Sort ---------------------------------------------------------------
+Merging
+When merging larger pre-sorted lists we build the list similarly to how we did with single-element lists.
+
+    Let's call the two lists left and right. Bothleft and right are already sorted. We want to combine them (to merge them) into a larger sorted list, let's call it both. To accomplish this we'll need to iterate through both with two indices, left_index and right_index.
+
+    At first left_index and right_index both point to the start of their respective lists. left_index points to the smallest element of left (its first element) and right_index points to the smallest element of right.
+
+    Compare the elements at left_index and right_index. The smaller of these two elements should be the first element of both because it's the smallest of both! It's the smallest of the two smallest values.
+
+    Let's say that smallest value was in left. We continue by incrementing left_index to point to the next-smallest value in left. Then we compare the 2nd smallest value in left against the smallest value of right. Whichever is smaller of these two is now the 2nd smallest value of both.
+
+    This process of "look at the two next-smallest elements of each list and add the smaller one to our resulting list" continues on for as long as both lists have elements to compare. Once one list is exhausted, say every element from left has been added to the result, then we know that all the elements of the other list, right, should go at the end of the resulting list (they're larger than every element we've added so far).
+
+the best, worst, and average time complexity are all the same: Θ(N*log(N)). This means an almost-sorted list will take the same amount of time as a completely out-of-order list. This is acceptable because the worst-case scenario, where a sort could stand to take the most time, is as fast as a sorting algorithm can be.
+
+The whole sort takes up two functions:
+
+merge_sort() which is called recursively breaks down an input list to smaller, more manageable pieces. merge() which is a helper function built to help combine those broken-down lists into ordered combination lists.
+
+merge_sort() continues to break down an input list until it only has one element and then it joins that with other single element lists to create sorted 2-element lists. Then it combines 2-element sorted lists into 4-element sorted lists. It continues that way until all the items of the lists are sorted!
+
+Quick Sort ---------------------------------------------------------------
+
+break the array into sub-arrays containing at most one element. One element is sorted by default!
+
+    We choose a single pivot element from the list. Every other element is compared with the pivot, which partitions the array into three groups.
+
+    A sub-array of elements smaller than the pivot.
+    The pivot itself.
+    A sub-array of elements greater than the pivot.
+    The process is repeated on the sub-arrays until they contain zero or one element. Elements in the "smaller than" group are never compared with elements in the "greater than" group. If the smaller and greater groupings are roughly equal, this cuts the problem in half with each partition step!
+
+Quicksort is an unusual algorithm in that the worst case runtime is O(N^2), but the average case is O(N * logN).
+
+We typically only discuss the worst case when talking about an algorithm's runtime, but for Quicksort it's so uncommon that we generally refer to it as O(N * logN).
+Steps - 
+We established a base case where the algorithm will complete when the start and end pointers indicate a list with one or zero elements
+If we haven't hit the base case, we randomly selected an element as the pivot and swapped it to the end of the list
+We then iterate through that list and track all the "lesser than" elements by swapping them with the iteration index and incrementing a lesser_than_pointer.
+Once we've iterated through the list, we swap the pivot element with the element located at lesser_than_pointer.
+With the list partitioned into two sub-lists, we repeat the process on both halves until base cases are met.
+
+We need to partition our list into two sub-lists of greater than or smaller than elements, and we're going to do this "in-place" without creating new lists. Strap in, this is the most complex portion of the algorithm!
+ 
+In Place Quick Sort - 
+
+Because we're doing this in-place, we'll need two pointers. One pointer will keep track of the "lesser than" elements. We can think of it as the border where all values at a lower index are lower in value to the pivot. The other pointer will track our progress through the list.
+
+Let's explore how this will work in an example:
+
+[5, 6, 2, 3, 1, 4]
+# we randomly select "3" and swap with the last element
+[5, 6, 2, 4, 1, 3]
+
+# We'll use () to mark our "lesser than" pointer
+# We'll use {} to mark our progress through the list
+
+[{(5)}, 6, 2, 4, 1, 3]
+# {5} is not less than 3, so the "lesser than" pointer doesn't move
+
+[(5), {6}, 2, 4, 1, 3]
+# {6} is not less than 3, so the "lesser than" pointer doesn't move
+
+[(5), 6, {2}, 4, 1, 3]
+# {2} is less than 3, so we SWAP the values...
+[(2), 6, {5}, 4, 1, 3]
+# Then we increment the "lesser than" pointer
+[2, (6), {5}, 4, 1, 3]
+
+[2, (6), 5, {4}, 1, 3]
+# {4} is not less than 3, so the "lesser than" pointer doesn't move
+
+[2, (6), 5, 4, {1}, 3]
+# {1} is less than 3, so we SWAP the values...
+[2, (1), 5, 4, {6}, 3]
+# Then we increment the "lesser than" pointer
+[2, 1, (5), 4, {6}, 3]
+
+# We've reached the end of the non-pivot values
+[2, 1, (5), 4, 6, {3}]
+# Swap the "lesser than" pointer with the pivot...
+[2, 1, (3), 4, 6, {5}]
+We have successfully partitioned this list. Note that the "sub-lists" are not necessarily sorted, we'll need to recursively run the algorithm on each sub-list, but the pivot has arrived at the correct location within the list.
+
 Linear Search ------------------------------------------------------------
 
 The linear search, or sequential search, algorithm sequentially checks whether a given value is an element of a specified list by scanning the elements of a list one-by-one. It checks every item in the list in order from the beginning to end until it finds a target value.
