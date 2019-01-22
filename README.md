@@ -2,6 +2,7 @@
 Data Structures And Algorithms using Python
 ----------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------
+
 BFS And DFS --------------------------------------------------------------
 
 You can use a graph search algorithm to traverse the entirety of a graph data structure to locate a specific value
@@ -12,19 +13,38 @@ DFS, which employs either recursion or a stack data structure, is useful for det
 BFS, which generally relies on a queue data structure, is helpful in finding the shortest path between two points
 There are three common traversal orders which you can apply with DFS to generate a list of all values in a graph: pre-order, post-order, and reverse post-order
 
-Pusedo Code for DFS recursion -
+Pusedo Code for DFS -
 
-loop through each neighbor of the current vertex in the graph:
+def dfs(graph, current_vertex, target_value, visited): 
 
-  if neighbor has not been visited:
+  set visited to empty list if not yet set
 
-    recursively call dfs on neighbor
+  add current_vertex to visited
 
-    if a path exists:
+  # base case:
+  if current_vertex is equal to target_value:
 
-      return the path
+    return visited list
+
+  loop through each neighbor of the current vertex in the graph:
+
+    if neighbor has not been visited:
+
+      recursively call dfs on neighbor
+
+      if a path exists:
+
+        return the path
 
 DFS Psuedo Code -
+
+def bfs(graph, start_vertex, target_value):
+
+  set path to a list containing the start_vertex
+
+  create a queue to hold vertices and their corresponding paths
+
+  define an empty visited set
   loop through queue while the queue is not empty:
 
     set current_vertex & path equal to first vertex & path on queue
