@@ -3,7 +3,229 @@ Data Structures And Algorithms using Python
 ----------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+Hash Map -----------------------------------------------------------------
+
+A hash map is:
+
+Built on top of an array using a special indexing system.
+A key-value storage with fast assignments and lookup.
+A table that represents a map from a set of keys to a set of values.
+Hash maps accomplish all this by using a hash function, which turns a key into an index into the underlying array.
+
+A hash collision is when a hash function returns the same index for two different keys.
+
+There are different hash collision strategies. Two important ones are separate chaining, where each array index points to a different data structure, and open addressing, where a collision triggers a probing sequence to find where to store the value for a given key.
+
+Hash maps are efficient key-value stores. They are capable of assigning and retrieving data in the fastest way possible for a data structure. This is because the underlying data structure that they use is an array. A value is stored at an array index determined by plugging the key into a hash function.
+
+In Python we don’t have an array data structure that uses a contiguous block of memory. We are going to simulate an array by creating a list and keeping track of the size of the list with an additional integer variable. This will allow us to design something that resembles a hash map. This is somewhat elaborate for the actual storage of a key-value pair, but it helps to remember that the purpose of this lesson is to gain a deeper understanding of the structure as it is constructed. For real-world use cases in which a key-value store is needed, Python offers a built-in hash table implementation with dictionaries.
+
+
+
+Hash Functions - 
+
+A hash function takes a string (or some other type of data) as input and returns an array index as output. In order for it to return an array index, our hash map implementation needs to know the size of our array. If the array we are saving values into only has 4 slots, our hash map's hashing method should not return an index bigger than that.
+
+In order for our hash map implementation to guarantee that it returns an index that fits into the underlying array, the hash function will first compute a value using some scoring metric: this is the hash value, hash code, or just the hash. Our hash map implementation then takes that hash value mod the size of the array. This guarantees that the value returned by the hash function can be used as an index into the array we're using.
+
+It is actually a defining feature of all hash functions that they greatly reduce any possible inputs (any string you can imagine) into a much smaller range of potential outputs (an integer smaller than the size of our array). For this reason hash functions are also known as compression functions.
+
+Much like an image that has been shrunk to a lower resolution, the output of a hash function contains less data than the input. Because of this hashing is not a reversible process. With just a hash value it is impossible to know for sure the key that was plugged into the hashing function.
+
+Open Addressing: Linear Probing
+        Another popular hash collision strategy is called open addressing. In open addressing we stick to the array as our underlying data structure, but we continue looking for a new index to save our data if the first result of our hash function has a different key's data.
+
+        A common open method of open addressing is called probing. Probing means continuing to find new array indices in a fixed sequence until an empty index is found.
+
+        Suppose we want to associate famous horses with their owners. We want our first key, “Bucephalus”, to store our first value, “Alexander the Great”. Our hash function returns an array index 3 and so we save “Alexander the Great”, along with our key “Bucephalus”, into the array at index 3.
+
+        After that, we want to store “Seabiscuit"s owner "Charles Howard". Unfortunately “Seabiscuit” also has a hash value of 3. Our probing method adds one to the hash value and tells us to continue looking at index 4. Since index 4 is open we store "Charles Howard" into the array at index 4. Because "Seabiscuit" has a hash of 3 but "Charles Howard" is located at index 4, we must also save "Seabiscuit" into the array at that index.
+
+        When we attempt to look up "Seabiscuit" in our Horse Owner's Hash Map, we first check the array at index 3. Upon noticing that our key (Seabiscuit) is different from the key sitting in index 3 (Bucephalus), we realize that this can't be the value we were looking for at all. Only by continuing to the next index do we check the key and notice that at index 4 our key matches the key saved into the index 4 bucket. Realizing that index 4 has the key "Seabiscuit" means we can retrieve the information at that location, Seabiscuit's owner's name: Charles Howard.
+        
+
+
+Trees - ------------------------------------------------------------------
+
+Trees Introduction
+Trees are an essential data structure for storing hierarchical data with a directed flow.
+
+Similar to linked lists and graphs, trees are composed of nodes which hold data. 
+Nodes also store references to zero or more other tree nodes. Data moves down from node to node. We depict those references as lines drawn between circles.
+
+Trees are often displayed with a single node at the top and connected nodes branching downwards.
+
+Binary Search Tree - 
+
+Constraints are placed on the data or node arrangement of a tree to solve difficult problems like efficient search.
+
+A binary tree is a type of tree where each parent can have no more than two children, known as the left child and right child.
+
+Further constraints make a binary search tree:
+
+Left child values must be lesser than their parent.
+Right child values must be greater than their parent.
+The constraints of a binary search tree allow us to search the tree efficiently. At each node, we can discard half of the remaining possible values!
+
+Trees are useful for modeling data that has a hierarchical relationship which moves in the direction from parent to child. No child node will have more than one parent.
+
+To recap some terms:
+
+root: A node which has no parent. One per tree.
+parent: A node which references other nodes.
+child: Nodes referenced by other nodes.
+sibling: Nodes which have the same parent.
+leaf: Nodes which have no children.
+level: The height or depth of the tree. Root nodes are at level 1, their children are at level 2, and so on.
+
+Class TreeNodes:
+
+        have a value
+        have a reference to zero or more other TreeNodes
+        can add a node as a child
+        can remove a child
+        can traverse (or travel through) connected nodes
+
+in our implementation:
+
+        Trees are a Python class called TreeNode.
+        A TreeNode has two properties, value and children.
+        Nodes hold any type of data inside value.
+        children is a list, which can be empty or hold other instances of TreeNode.
+        We add to children by using the list method .append.
+        We remove from children by filtering the list.
+        
+ 
+
+
+Heaps --------------------------------------------------------------------
+
+Heaps are used to maintain a maximum or minimum value in a dataset. Heaps tracking the maximum or minimum value are max-heaps or min-heaps. Think of the min-heap as a binary tree with two qualities:
+
+        The root is the minimum value of the dataset.
+        Every child's value is greater than its parent.
+        
+These two properties are the defining characteristics of the min-heap. By maintaining these two properties, we can efficiently retrieve and update the minimum value.
+
+We can picture min-heaps as binary trees, where each node has at most two children. As we add elements to the heap, they're added from left to right until we've filled the entire level.
+
+Conceptually, the tree representation is beneficial for understanding. Practically, we implement heaps in a sequential data structure like an array or list for efficiency.
+
+Notice how by filling the tree from left to right; we're leaving no gaps in the array. The location of each child or parent derives from a formula using the index.
+
+        left child: (index * 2) + 1
+        right child: (index * 2) + 2
+        parent: (index - 1) / 2 — not used on the root!
+       
+Defining Min-Heap
+Our MinHeap class will store two pieces of information:
+
+A Python list of the elements within the heap.
+A count of the elements within the heap.
+
+Adding an Element: Heapify Up I
+The min-heap is no good if all it ever contains is None. Let's build the functionality to add elements while maintaining the heap properties.
+
+Our MinHeap will abide by two principles:
+
+The element at index 1 is the minimum value in the entire list.
+Every "child" element in the list must be larger than their "parent".
+The first element we add to the list will be the minimum because there are no other elements. We'll tackle the trickier aspects of maintaining these principles in the coming lessons.
+
+We need to make sure that every child is greater in value than their parent. Say we add an element to the following heap:
+
+print(heap.heap_list)
+# [None, 10, 13, 21, 61, 22, 23, 99]
+heap.add(12)
+
+# ( new_element )
+# { parent_element }
+# [None, 10, 13, 21, {61}, 22, 23, 99, (12)]
+Oh no! We've violated the heap property: 12's parent is 61, the parent element is greater than the child.
+we can fix this. We'll exchange the parent and the child elements.
+
+# [None, 10, 13, 21, {61}, 22, 23, 99, (12)]
+# SWAP 12 and 61
+# [None, 10, 13, 21, (12), 22, 23, 99, {61}]
+12's parent is now 13, they're close but the parent element is still greater than the child. Keep on swappin'!
+
+# [None, 10, {13}, 21, (12), 22, 23, 99, 61]
+# SWAP 12 and 13
+# [None, 10, (12), 21, {13}, 22, 23, 99, 61]
+Okay, you can let out that sigh of relief. We've restored the heap properties!
+
+# [None, {10}, (12), 21, 13, 22, 23, 99, 61]
+# The child, 12, is greater than the parent, 10!
+Let's recap our strategy for .heapify_up():
+
+        # start at the last element of the list
+        # while there's a parent element available:
+          # if the parent element is greater:
+            # swap the elements
+          # set the target element index to be the parent's index
+
+.heapify_down(), Here's the general shape of the method:
+
+ # starting with our first element...
+ # while there's at least one child present:
+   # get the smallest child's index
+   # compare the smallest child with our element
+     # if our element is larger, swap with child
+   # regardless, set our element index to be the child
+   
+ 
+ To recap: MinHeap tracks the minimum element as the element at index 1 within an internal Python list.
+
+        When adding elements, we use .heapify_up() to compare the new element with its parent, making swaps if it violates the heap property: children must be greater than their parents.
+
+        When removing the minimum element, we swap it with the last element in the list. Then we use .heapify_down() to compare the new root with its children, swapping with the smaller child if necessary.
+
+        Heaps are so useful because they're efficient in maintaining their heap properties. 
+        
+        
+
+Graphs -------------------------------------------------------------------
+#vertex.py, graphs and graph.py
+
+Representing Graphs
+We typically represent the vertex-edge relationship of a graph in two ways: an adjacency list or an adjacency matrix.
+
+An adjacency matrix is a spreadsheet. Across the top, every vertex in the graph appears as a column. Down the side, every vertex appears again as a row. Edges can be bi-directional, so each vertex is listed twice.
+
+To find an edge between B and P, we would look for the B row and then trace across to the P column. The contents of this cell represent a possible edge.
+
+Our diagram uses 1 to mark an edge, 0 for the absence of an edge. In a weighted graph, the cell contains the cost of that edge.
+
+In an adjacency list, each vertex contains a list of the vertices where an edge exists. To find an edge, one looks through the list for the desired vertex.
+
+Graphs are an essential data structure in computer science for modeling networks. Let's review some key terms:
+
+vertex: A node in a graph.
+edge: A connection between two vertices.
+adjacent: When an edge exists between vertices.
+path: A sequence of one or more edges between vertices.
+disconnected: Graph where at least two vertices have no path connecting them.
+weighted: Graph where edges have an associated cost.
+directed: Graph where travel between vertices can be restricted to a single direction.
+cycle: A path which begins and ends at the same vertex.
+adjacency matrix: Graph representation where vertices are both the rows and the columns. Each cell represents a possible edge.
+adjacency list: Graph representation where each vertex has a list of all the vertices it shares an edge with.
+
+two classes, Vertex and Graph,functionality we require from these classes:
+
+Vertex stores some data.
+Vertex stores the edges to connected vertices and their weight.
+Vertex can add a new edge to its collection.
+Graph stores all the vertices.
+Graph knows if it is directed or undirected.
+Graph can add a new vertex to its collection.
+Graph can add a new edge between stored vertices.
+Graph can tell whether a path exists between stored vertices.
+
+
+
 Bubble Sort --------------------------------------------------------------
+
 Bubble sort is an introductory sorting algorithm that iterates through a list and compares pairings of adjacent elements.
 
 According to the sorting criteria, the algorithm swaps elements to shift elements towards the beginning or end of the list.
