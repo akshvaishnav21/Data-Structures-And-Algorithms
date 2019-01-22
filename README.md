@@ -12,7 +12,8 @@ DFS, which employs either recursion or a stack data structure, is useful for det
 BFS, which generally relies on a queue data structure, is helpful in finding the shortest path between two points
 There are three common traversal orders which you can apply with DFS to generate a list of all values in a graph: pre-order, post-order, and reverse post-order
 
-Pusedo Code - 
+Pusedo Code for DFS recursion -
+
 loop through each neighbor of the current vertex in the graph:
 
   if neighbor has not been visited:
@@ -22,6 +23,25 @@ loop through each neighbor of the current vertex in the graph:
     if a path exists:
 
       return the path
+
+DFS Psuedo Code -
+  loop through queue while the queue is not empty:
+
+    set current_vertex & path equal to first vertex & path on queue
+
+    add current_vertex to visited set
+
+    loop through each neighbor of current_vertex in graph
+
+      if neighbor has not been visited:
+
+        if neighbor is equal to target_value:
+
+          return path including neighbor
+
+        else:
+
+           add neighbor and its path to the queue
 
 Dijkstra’s Algorithm -----------------------------------------------------
 
