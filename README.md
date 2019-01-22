@@ -799,3 +799,25 @@ radix sort:
         Radix sort is considered a non-comparison sort
         The performance of radix sort is O(n)
         
+Finding the Max Exponent
+In our version of least significant digit radix sort, we're going to utilize the string representation of each integer. This, combined with negative indexing, will allow us to count each digit in a number from right-to-left.
+
+Some other implementations utilize integer division and modular arithmetic to find each digit in a radix sort, but our goal here is to build an intuition for how the sort works.
+
+Our first step is going to be finding the max_exponent, which is the number of digits long the largest number is. We're going to find the largest number, cast it to a string, and take the length of that string.
+
+Setting Up For Sorting
+In this implementation, we're going to build the radix sort naturally, from the inside out. The first step we're going to take is going to be our inner-most loop, so that we know we'll be solid when we're iterating through each of the exponents.
+
+Bucketing Numbers
+The least significant digit radix sort algorithm takes each number in the input list, looks at the digits of that number in order from right to left, and incrementally stuffs each number into the bucket corresponding to the value of that digit.
+
+First we're going to write this logic for the least significant digit, then we're going to loop over the code we write to do that for every digit.
+
+Rendering the List
+For every iteration, radix sort renders a version of the input list that is sorted based on the digit that was just looked at. At first pass, only the ones digit is sorted. At the second pass, the tens and the ones are sorted. This goes on until the digits in the largest position of the largest number in the list are all sorted, and the list is sorted at that time.
+
+Here we'll be rendering the list, at first, it will just return the list sorted so just the ones digit is sorted.
+
+Iterating through Exponents
+We have the interior of our radix sort, which right now goes through a list and sorts it by the first digit in each number. That's a pretty great start actually. It won't be hard for us to go over every digit in a number now that we can already sort by a given digit.
