@@ -39,6 +39,22 @@ Linear search is a good choice for a search algorithm when:
   You expect the target value to be positioned near the beginning of the list.
 
   A search needs to be performed on an unsorted list because linear search traverses the entire list from beginning to end, regardless of its order.
+  
+  Psuedo Code - 
+    # For each element in the search_list
+        # if element equal target value then
+           # return its index
+    # if element is not found then 
+    # raise a ValueError
+    
+ Psuedo Code for Finding Duplicates using linear Search - 
+    # For each element in the searchList
+    # if element equal target value then
+        # Add its index to a list of occurrences
+    # if the list of occurrences is empty
+        # raise ValueError
+    # otherwise
+        # return the list occurrences
 
 Binary Search ------------------------------------------------------------
 
@@ -75,6 +91,17 @@ Comparison 5: If the new middle is not equal to our search value, we would look 
 Comparison 6: If the new middle is not equal to our search value, we would look at 2 elements
 
 When there's 2 elements, the search value is either one or the other, and thus, there is at most 6 comparisons in a sorted list of size 64.
+
+Algorithm - 
+    Check the middle value of the dataset.
+
+    If this value matches our target we return the target value index.
+    If the middle value is greater than our target
+
+        Begin at step 1 using the left half of the list.
+    If the middle value is less than our target
+
+        Begin at step 1 using the right half of the list.
 
 BFS And DFS --------------------------------------------------------------
 
