@@ -1,15 +1,20 @@
-def insertionSort(alist):
-   for index in range(1,len(alist)):
 
-     currentvalue = alist[index]
-     position = index
-
-     while position>0 and alist[position-1]>currentvalue:
-         alist[position]=alist[position-1]
-         position = position-1
-
-     alist[position]=currentvalue
-
+def insertionSort(arr): 
+  
+    # Traverse through 1 to len(arr) 
+    for i in range(1, len(arr)): 
+  
+        key = arr[i] 
+  
+        # Move elements of arr[0..i-1], that are 
+        # greater than key, to one position ahead 
+        # of their current position 
+        j = i-1
+        while j >=0 and key < arr[j] : 
+                arr[j+1] = arr[j] 
+                j -= 1
+        arr[j+1] = key 
+    return arr
 alist = [54,26,93,17,77,31,44,55,20]
 insertionSort(alist)
 print(alist)
