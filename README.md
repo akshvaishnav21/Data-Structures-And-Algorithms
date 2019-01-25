@@ -552,6 +552,33 @@ Initialize the empty array
 Traverse array  and copy  into  for  number of times where .
 Note: The array  can be sorted by using this algorithm only if the maximum value in array  is less than the maximum size of the array . Usually, it is possible to allocate memory up to the order of a million . If the maximum value of  exceeds the maximum memory- allocation size, it is recommended that you do not use this algorithm. Use either the quick sort or merge sort algorithm.
 
+Bucket Sort --------------------------------------------------------------
+
+Bucket sort is a comparison sort algorithm that operates on elements by dividing them into different buckets and then sorting these buckets individually. Each bucket is sorted individually using a separate sorting algorithm or by applying the bucket sort algorithm recursively. Bucket sort is mainly useful when the input is uniformly distributed over a range.
+
+Assume one has the following problem in front of them:
+
+One has been given a large array of floating point integers lying uniformly between the lower and upper bound. This array now needs to be sorted. A simple way to solve this problem would be to use another sorting algorithm such as Merge sort, Heap Sort or Quick Sort. However, these algorithms guarantee a best case time complexity of . However, using bucket sort, the above task can be completed in O(n) time. Let's have a closer look at it.
+
+Consider one needs to create an array of lists, i.e of buckets. Elements now need to be inserted into these buckets on the basis of their properties. Each of these buckets can then be sorted individually using Insertion Sort. Consider the pseudo code to do so:
+
+void bucketSort(float[] a,int n)
+{
+    for(each floating integer 'x' in n)
+    {
+        insert x into bucket[n*x]; 
+    }
+    for(each bucket)
+    {
+        sort(bucket);
+    }
+}
+Time Complexity:
+
+If one assumes that insertion in a bucket takes O(1) time, then steps 1 and 2 of the above algorithm take O(n) time.
+
+divide the elements of this array into buckets on the basis of the number of set bits in its binary representation.
+
 Linear Search ------------------------------------------------------------
 
 The linear search, or sequential search, algorithm sequentially checks whether a given value is an element of a specified list by scanning the elements of a list one-by-one. It checks every item in the list in order from the beginning to end until it finds a target value.
