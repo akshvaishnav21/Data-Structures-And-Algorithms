@@ -1,3 +1,5 @@
+# Using dictionary to store buckets
+# Using no of set bits in binary representation of a number to assign numbers into bucket
 def bucket_sort(arr):
     d = {}
     for x in arr:
