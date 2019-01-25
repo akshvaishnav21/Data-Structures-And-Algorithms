@@ -536,6 +536,22 @@ Let's explore how this will work in an example:
 [2, 1, (3), 4, 6, {5}]
 We have successfully partitioned this list. Note that the "sub-lists" are not necessarily sorted, we'll need to recursively run the algorithm on each sub-list, but the pivot has arrived at the correct location within the list.
 
+
+Counting Sort-------------------------------------------------------------
+
+In Counting sort, the frequencies of distinct elements of the array to be sorted is counted and stored in an auxiliary array, by mapping its value as an index of the auxiliary array.
+
+Algorithm:
+
+Let's assume that, array  of size  needs to be sorted.
+
+Initialize the auxillary array  as . 
+Note: The size of this array should be .
+Traverse array  and store the count of occurrence of each element in the appropriate index of the  array, which means, execute Aux[A[i]]++ for each , where  ranges from .
+Initialize the empty array 
+Traverse array  and copy  into  for  number of times where .
+Note: The array  can be sorted by using this algorithm only if the maximum value in array  is less than the maximum size of the array . Usually, it is possible to allocate memory up to the order of a million . If the maximum value of  exceeds the maximum memory- allocation size, it is recommended that you do not use this algorithm. Use either the quick sort or merge sort algorithm.
+
 Linear Search ------------------------------------------------------------
 
 The linear search, or sequential search, algorithm sequentially checks whether a given value is an element of a specified list by scanning the elements of a list one-by-one. It checks every item in the list in order from the beginning to end until it finds a target value.
